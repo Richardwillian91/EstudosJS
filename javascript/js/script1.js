@@ -44,6 +44,7 @@ class Produto{
             let imgDelete = document.createElement('img')
             imgEdit.src = 'javascript/img/edit.svg'
             imgDelete.src = 'javascript/img/excluir.svg'
+            imgDelete.setAttribute("onclick"," produto.deletar("+ this.arrayProdutos[i].id +")")
 
             td_acoes.appendChild(imgEdit)
             td_acoes.appendChild(imgDelete)
@@ -86,5 +87,21 @@ class Produto{
         produto.nomeProduto= document.getElementById('produto').value = ''
         produto.preco = document.getElementById('preco').value = ''
     }
+
+
+    deletar(id){
+        let tbody = document.getElementById('tbody')
+
+
+        for(let i = 0; i <this.arrayProdutos.length; i++ ){
+            if(this.arrayProdutos[i].id == id){
+                this.arrayProdutos.splice(i, 1);
+                tbody.deleteRow(i)
+            }
+        }
+
+        console.log(this.arrayProdutos);
+    }
+    
 }
 var produto = new Produto();
